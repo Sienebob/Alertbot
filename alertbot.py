@@ -30,7 +30,7 @@ emavalue = f"ema arvo {last_row['EMA_14']:.2f}"
 
 rsivalue = f"rsi arvo {last_row['RSI_14']:.2f}"
 
-message = (rsivalue, emavalue)
+message = (rsivalue +"    " +emavalue)
 
 print(rsivalue)
 print (emavalue)
@@ -41,7 +41,7 @@ payload = {
 "content": message
 }
 
-requests.post(WEBHOOK_URL, json=payload)
+requests.post(WEBHOOK_URL, payload)
 
 
 """
