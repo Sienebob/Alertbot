@@ -31,22 +31,26 @@ print(last_row)
 #tehdään muuttujat ja otetaan tiedot niihin em. taulukon viimeisestä rivistä
 rsivalue = f"rsi arvo {last_row['RSI_14']:.2f}"
 adxvalue = f"adx arvo {last_row['ADX_14']:.2f}"
-macdLvalue = f"macdL arvo {last_row['MACD_14_28_9']:.2f}"
-macdHvalue = f"macdH arvo {last_row['MACDh_14_28_9']:.2f}"
+macd1 = f"macd1 arvo {last_row['MACD_14_28_9']:.2f}" #oranssi
+macd2 = f"macd2 arvo {last_row['MACDh_14_28_9']:.2f}" 
+macd3 = f"macd3 arvo {last_row['MACDs_14_28_9']:.2f}" #sininen
 
 
 #nyt voidaan tehdä haluttu logiikka jonka perusteella lähetetään viesti
 #esimerkkitapauksessa pingataan käyttäjää jos macdLvalue > macdHvalue, muuten ei pingata
-if macdLvalue > macdHvalue:
-    message = ( DISCORD_USERID +"  " + pair + " on nousemassa  " + rsivalue +"  " + macdLvalue + "  " + macdHvalue + " https://www.tradingview.com/chart/?symbol=BINANCE%3ALUNAUSDT")
+if macd1  > macd3 :
+    message = ( DISCORD_USERID +"  " + pair + " on nousemassa  " + rsivalue +"  " + macd1 + "  " + macd3 + " https://www.tradingview.com/chart/?symbol=BINANCE%3ALUNAUSDT")
 
 else:   
-    message = ("Ei nousua " + pair + " " + rsivalue +"  " + macdLvalue + "  " + macdHvalue)
+    message = ("Ei nousua " + pair + " " + rsivalue +"  " + macd1 + "  " + macd3)
 
 #tulostetaan muuttujat lopuun
 print(rsivalue)
-print(macdHvalue)
-print(macdLvalue)
+
+print(macd1)
+print(macd2)
+print(macd3)
+
 #tulostetaan viesti
 print("viesti" , message)
 
