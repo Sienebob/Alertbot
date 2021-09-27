@@ -2,6 +2,7 @@ import ccxt, yfinance
 import pandas_ta as ta
 import pandas as pd
 import requests
+import datetime
 
 #asetetaan haluttu exchange, pari, aikaväli ja kuinka monta askelta taakse katsotaan.
 exchange = ccxt.binance()
@@ -27,8 +28,18 @@ last_row = df.iloc[-1]
 #tulostetaan viimeinen rivi
 print(last_row)
 
+#Otetaan unix timestamp ja muutetaan se ihmismuotoon
+Timestamp = last_row['time']
+#täytyy jakaa 1000 koska käytetään windowsia
+
+ts = int(Timestamp/1000)
+#tulostetaan haluttuun muotoon
+print(datetime.datetime.fromtimestamp(int(ts)).strftime('%d-%m-%Y %H:%M:%S'))
+
 
 #tehdään muuttujat ja otetaan tiedot niihin em. taulukon viimeisestä rivistä
+
+
 rsivalue = f"rsi arvo {last_row['RSI_14']:.2f}"
 adxvalue = f"adx arvo {last_row['ADX_14']:.2f}"
 macd1 = f"macd1 arvo {last_row['MACD_14_28_9']:.2f}" #oranssi
@@ -39,7 +50,7 @@ macd3 = f"macd3 arvo {last_row['MACDs_14_28_9']:.2f}" #sininen
 #nyt voidaan tehdä haluttu logiikka jonka perusteella lähetetään viesti
 #esimerkkitapauksessa pingataan käyttäjää jos macdLvalue > macdHvalue, muuten ei pingata
 if macd1  > macd3 :
-    message = ( DISCORD_USERID +"  " + pair + " on nousemassa  " + rsivalue +"  " + macd1 + "  " + macd3 + " https://www.tradingview.com/chart/?symbol=BINANCE%3ALUNAUSDT")
+    message = ( DISCORD_USERID +"  " + pair + " on nousemassa  " + rsivalue +"  " + macd1 + "  " + macd3 + " " +" https://www.tradingview.com/chart/?symbol=BINANCE%3ALUNAUSDT")
 
 else:   
     message = ("Ei nousua " + pair + " " + rsivalue +"  " + macd1 + "  " + macd3)
