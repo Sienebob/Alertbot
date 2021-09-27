@@ -34,8 +34,8 @@ Timestamp = last_row['time']
 
 ts = int(Timestamp/1000)
 #tulostetaan haluttuun muotoon
-print(datetime.datetime.fromtimestamp(int(ts)).strftime('%d-%m-%Y %H:%M:%S'))
-
+realtime = datetime.datetime.fromtimestamp(int(ts)).strftime('%d-%m-%Y %H:%M:%S')
+print(realtime)
 
 #tehdään muuttujat ja otetaan tiedot niihin em. taulukon viimeisestä rivistä
 
@@ -50,10 +50,10 @@ macd3 = f"macd3 arvo {last_row['MACDs_14_28_9']:.2f}" #sininen
 #nyt voidaan tehdä haluttu logiikka jonka perusteella lähetetään viesti
 #esimerkkitapauksessa pingataan käyttäjää jos macdLvalue > macdHvalue, muuten ei pingata
 if macd1  > macd3 :
-    message = ( DISCORD_USERID +"  " + pair + " on nousemassa  " + rsivalue +"  " + macd1 + "  " + macd3 + " " +" https://www.tradingview.com/chart/?symbol=BINANCE%3ALUNAUSDT")
+    message = ( DISCORD_USERID +"  " + pair + " on nousemassa  " + rsivalue +"  " + macd1 + "  " + macd3 + realtime +" https://www.tradingview.com/chart/?symbol=BINANCE%3ALUNAUSDT")
 
 else:   
-    message = ("Ei nousua " + pair + " " + rsivalue +"  " + macd1 + "  " + macd3)
+    message = ("Ei nousua " + pair + " " + rsivalue +"  " + macd1 + "  " + macd3 + "  " + realtime)
 
 #tulostetaan muuttujat lopuun
 print(rsivalue)
