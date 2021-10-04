@@ -16,8 +16,8 @@ macd = df.ta.macd(fast=14, slow=28)
 rsi = df.ta.rsi()
 
 #Discordin webhook url sekä user ID jota halutaan pingata
-WEBHOOK_URL = "https://discord.com/api/webhooks/889265250875080725/nAh5DI_8uI6QDQYWW3GtQ4c1rUtK766mvDX9QTKyBseZiDOfMQR16iXGbPk--KGMY-Ts"
-DISCORD_USERID = "<@606915182459093032>"
+WEBHOOK_URL = "YOUR_WEBHOOK_HERE"
+DISCORD_USERID = "< YOUR USER_ID_HERE >"
 
 #haetaan taulukkoon viimeiset 100 muuttujaa ja mitä arvoja niistä haetaan
 df = pd.concat([df, adx,macd,rsi], axis=1)
